@@ -1,0 +1,7 @@
+# No subir al despliegue archivos que solo deben vivir en el repositorio
+users.json
+draft.js
+docs/
+*.md
+1-INICIAR-LOCAL.bat
+_qa.html

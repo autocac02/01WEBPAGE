@@ -1,0 +1,10 @@
+# Dependencias y artefactos locales
+node_modules/
+.vercel/
+.DS_Store
+Thumbs.db
+*.log
+
+# Archivos que genera el editor (se versionan solo si querés)
+# users.json  ← conviene versionarlo: guarda la contraseña cifrada
+# draft.js    ← borrador de trabajo

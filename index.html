@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KANDO · Organización de vestidores, placares y roperos en Buenos Aires</title>
+  <meta name="description" content="Ordenamos vestidores, placares y roperos con el método de Marie Kondo, adaptado a tu vida. Diagnóstico sin cargo en CABA y AMBA.">
+  <meta name="theme-color" content="#F9F1EB">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="KANDO">
+  <meta property="og:title" content="KANDO · Tu ropero puede volver a respirar">
+  <meta property="og:description" content="Organización de vestidores, placares y roperos con el método KonMari, adaptado a cómo vivís vos. CABA y AMBA.">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23F3E1D5'/%3E%3Ccircle cx='32' cy='32' r='19' fill='none' stroke='%23C08A6C' stroke-width='2.5' stroke-dasharray='96 14' transform='rotate(-70 32 32)'/%3E%3Ctext x='32' y='40' font-family='Georgia,serif' font-size='22' fill='%237A4E36' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link data-font-pair rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300..600&display=swap">
+
+  <link rel="stylesheet" href="site.css">
+
+  <style>
+    .boot {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      gap: 18px;
+      background: #F9F1EB;
+      color: #7A4E36;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 24px;
+    }
+    .boot-mark {
+      width: 62px; height: 62px; border-radius: 50%;
+      border: 1px solid rgba(192,138,108,.5);
+      display: grid; place-items: center;
+      font-size: 24px;
+      animation: bootPulse 2.4s ease-in-out infinite;
+    }
+    .boot p { margin: 0; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; opacity: .6; font-family: system-ui, sans-serif; }
+    .boot-error { max-width: 560px; font-family: system-ui, sans-serif; line-height: 1.6; font-size: 15px; color: #2B2622; }
+    .boot-error code { background: rgba(0,0,0,.06); padding: 2px 6px; border-radius: 4px; }
+    @keyframes bootPulse { 0%,100% { opacity: .45; transform: scale(.98) } 50% { opacity: 1; transform: scale(1.02) } }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <div class="boot">
+      <div class="boot-mark">K</div>
+      <p>Cargando calma…</p>
+    </div>
+  </div>
+
+  <noscript>
+    <div style="padding:40px;font-family:system-ui,sans-serif;text-align:center">
+      Este sitio necesita JavaScript para mostrar el contenido.
+      Escribinos por WhatsApp al +54 11 2233-4455 y te contamos todo.
+    </div>
+  </noscript>
+
+  <script src="art.js"></script>
+  <script src="render.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      function boot() {
+        var host = document.getElementById('app');
+        try {
+          var c = window.KANDO_CONTENT;
+          if (!c) throw new Error('No se encontró content.js');
+
+          host.innerHTML = window.KandoRender.page(c);
+          var page = document.querySelector('.page');
+          window.KandoApp.applyTheme(page);
+
+          var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.KandoApp.mount(page, { reduceMotion: reduce });
+
+          /* metadatos desde el contenido */
+          var seo = (c.settings && c.settings.seo) || {};
+          if (seo.title) document.title = seo.title;
+          if (seo.description) {
+            var d = document.querySelector('meta[name="description"]');
+            if (d) d.setAttribute('content', seo.description);
+            var og = document.querySelector('meta[property="og:description"]');
+            if (og) og.setAttribute('content', seo.description);
+          }
+          var ogt = document.querySelector('meta[property="og:title"]');
+          if (ogt && seo.title) ogt.setAttribute('content', seo.title);
+        } catch (err) {
+          host.innerHTML = '<div class="boot"><div class="boot-error"><p style="font-size:15px;letter-spacing:0;text-transform:none">' +
+            'No pudimos cargar el contenido.<br><br>' +
+            'Si estás abriendo el archivo con doble clic, probá con <code>1-INICIAR-LOCAL.bat</code>. ' +
+            'Si el problema sigue, revisá que <code>content.js</code> esté en la misma carpeta que <code>index.html</code>.' +
+            '</p></div></div>';
+          if (window.console) console.error(err);
+        }
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+      else boot();
+    })();
+  </script>
+</body>
+</html>

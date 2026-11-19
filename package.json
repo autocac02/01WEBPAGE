@@ -1,0 +1,10 @@
+{
+  "name": "kando-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio y editor de KANDO · organización de espacios de guardado",
+  "engines": {
+    "node": ">=18"
+  }
+}

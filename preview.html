@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Vista previa · KANDO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link data-font-pair rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300..600&display=swap">
+  <link rel="stylesheet" href="site.css">
+  <style>
+    html, body { min-height: 100%; }
+    body { margin: 0; }
+    .preview-empty { min-height: 100vh; display: grid; place-items: center; color: #8B7E73; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="papp"><div class="preview-empty">Preparando la vista previa…</div></div>
+
+  <script src="art.js"></script>
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      var host = document.getElementById('papp');
+      var destroy = null;
+      var editMode = false;
+
+      function mount(content, opts) {
+        opts = opts || {};
+        editMode = opts.mode === 'edit';
+        if (typeof destroy === 'function') { destroy(); destroy = null; }
+
+        var y = window.scrollY || 0;
+        host.innerHTML = window.KandoRender.page(content);
+        var page = host.querySelector('.page');
+        if (!page) return null;
+
+        document.documentElement.classList.toggle('kando-edit', editMode);
+        document.documentElement.setAttribute('data-edit-mode', editMode ? '1' : '0');
+        window.KandoApp.applyTheme(page);
+        destroy = window.KandoApp.mount(page, { mode: opts.mode || 'view', reduceMotion: !!opts.reduceMotion });
+        window.scrollTo(0, y);
+        return page;
+      }
+
+      /* En modo edición los enlaces no navegan: se editan. */
+      document.addEventListener('click', function (e) {
+        if (!editMode) return;
+        var a = e.target.closest && e.target.closest('a');
+        var inField = e.target.closest && e.target.closest('[data-field].is-editing');
+        if (a && !inField) e.preventDefault();
+      }, true);
+
+      document.addEventListener('submit', function (e) {
+        if (editMode) e.preventDefault();
+      }, true);
+
+      window.KandoPreview = {
+        mount: mount,
+        root: function () { return host.querySelector('.page'); },
+        body: function () { return host.querySelector('main'); },
+        destroy: function () { if (typeof destroy === 'function') destroy(); destroy = null; },
+        isEdit: function () { return editMode; },
+        version: '1.0.0'
+      };
+
+      parent.postMessage({ type: 'kando:preview-ready' }, '*');
+    })();
+  </script>
+</body>
+</html>

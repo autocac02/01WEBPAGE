@@ -1,0 +1,2 @@
+Archivo de prueba del instalador. Se puede borrar sin problema.
+(The installer's write test. Safe to delete.)

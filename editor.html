@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Editor · KANDO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@300..600&display=swap">
+  <link rel="stylesheet" href="editor.css">
+</head>
+<body>
+
+<!-- ===================== acceso ===================== -->
+<div class="gate" data-gate>
+  <form class="gate-card" data-gate-form autocomplete="off">
+    <div class="gate-brand">
+      <span class="gate-mark" data-brand-monogram>K</span>
+      <span><b>KANDO · EDITOR</b><i>Orden que se siente</i></span>
+    </div>
+
+    <h1 data-gate-title>Entrá a tu editor</h1>
+    <p class="sub" data-gate-sub>Ingresá tu contraseña para editar el sitio y publicar los cambios.</p>
+
+    <div class="gate-note u-hide" data-gate-note></div>
+
+    <div class="u-hide" data-setup-block>
+      <label for="setup-token">Token de instalación</label>
+      <input id="setup-token" type="password" data-setup-token placeholder="El valor de ADMIN_SETUP_TOKEN" autocomplete="off">
+    </div>
+
+    <label for="gate-pass">Contraseña</label>
+    <input id="gate-pass" type="password" data-pass placeholder="••••••••" autocomplete="current-password">
+
+    <div class="u-hide" data-setup-block2>
+      <label for="gate-pass2">Repetir contraseña</label>
+      <input id="gate-pass2" type="password" data-pass2 placeholder="••••••••" autocomplete="new-password">
+    </div>
+
+    <button class="btn-u is-dark" type="submit" data-gate-go>Entrar</button>
+    <div class="gate-msg" data-gate-msg></div>
+
+    <div class="gate-foot">
+      ¿Te olvidaste la contraseña? Podés restablecerla borrando <b>users.json</b> del repositorio y volviendo a entrar con el token de instalación.
+    </div>
+  </form>
+</div>
+
+<!-- ===================== aplicación ===================== -->
+<div class="app u-hide" data-app data-device="desktop">
+
+  <header class="bar">
+    <div class="bar-brand">
+      <span class="bar-mark" data-brand-monogram2>K</span>
+      <span>
+        <span class="bar-name" data-brand-name>KANDO</span>
+        <span class="bar-tag">Editor del sitio</span>
+      </span>
+    </div>
+
+    <div class="bar-page">
+      <b data-page-title>Inicio</b>
+      <span class="sep">/</span>
+      <span data-page-sub>Borrador</span>
+    </div>
+
+    <div class="bar-mid">
+      <div class="seg" data-device-seg>
+        <button type="button" data-device-btn="desktop" class="is-on" title="Escritorio">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </button>
+        <button type="button" data-device-btn="tablet" title="Tablet">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M11 18h2"/></svg>
+        </button>
+        <button type="button" data-device-btn="mobile" title="Celular">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg>
+        </button>
+      </div>
+
+      <div class="seg" data-mode-seg>
+        <button type="button" data-mode-btn="edit" class="is-on">Editar</button>
+        <button type="button" data-mode-btn="preview">Vista previa</button>
+      </div>
+    </div>
+
+    <div class="bar-right">
+      <span class="save-state" data-save-state><i class="dot"></i><span data-save-text>Borrador cargado</span></span>
+      <button class="btn-u is-ghost" type="button" data-btn-undo title="Deshacer (Ctrl+Z)" aria-label="Deshacer">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10h9a5 5 0 0 1 0 10H8"/><path d="m8 6-4 4 4 4"/></svg>
+      </button>
+      <button class="btn-u is-ghost" type="button" data-btn-redo title="Rehacer (Ctrl+Shift+Z)" aria-label="Rehacer">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10h-9a5 5 0 0 0 0 10h5"/><path d="m16 6 4 4-4 4"/></svg>
+      </button>
+      <button class="btn-u" type="button" data-btn-save title="Guardar borrador (Ctrl+S)" aria-label="Guardar borrador">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v6h7V4M8 20v-6h8v6"/></svg>
+        <span class="u-label">Guardar</span>
+      </button>
+      <button class="btn-u is-accent" type="button" data-btn-publish aria-label="Publicar">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V6"/><path d="m6 12 6-6 6 6"/><path d="M4 21h16"/></svg>
+        <span class="u-label">Publicar</span>
+      </button>
+      <button class="avatar" type="button" data-avatar title="Cuenta">KA</button>
+    </div>
+  </header>
+
+  <!-- panel izquierdo -->
+  <aside class="panel panel-left">
+    <div class="panel-tabs">
+      <button type="button" data-left-tab="secciones" class="is-on">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        Secciones
+      </button>
+      <button type="button" data-left-tab="diseno">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/></svg>
+        Diseño
+      </button>
+      <button type="button" data-left-tab="ajustes">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        Ajustes
+      </button>
+    </div>
+    <div class="panel-body" data-left-body></div>
+  </aside>
+
+  <!-- canvas -->
+  <section class="canvas-wrap">
+    <div class="canvas-top">
+      <span class="url">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="5" width="16" height="14" rx="3"/><path d="M4 9h16"/></svg>
+        <span data-url>kando.com.ar</span>
+      </span>
+      <span data-canvas-hint>Hacé clic en una sección para editarla · doble clic en un texto para escribir</span>
+      <button class="btn-u is-sm narrow-only narrow-left" type="button" data-toggle-left>Secciones</button>
+      <button class="btn-u is-sm narrow-only narrow-right" type="button" data-toggle-right>Campos</button>
+    </div>
+    <div class="canvas-scroll">
+      <div class="device-fit" data-device-fit>
+        <div class="device" data-device-frame>
+          <iframe data-frame src="preview.html" title="Vista previa del sitio"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- panel derecho -->
+  <aside class="panel panel-right">
+    <div class="panel-head">
+      <h2 data-inspector-title>Diseño</h2>
+      <span class="type-chip u-hide" data-inspector-chip>sección</span>
+      <button class="icon-btn insp-close" type="button" data-insp-close aria-label="Cerrar panel" title="Cerrar">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="panel-body" data-right-body>
+      <div class="canvas-empty" style="height:auto;padding:26px 18px">
+        Elegí una sección de la izquierda<br>o hacé clic sobre la página.
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- ===================== modales ===================== -->
+<div class="overlay" data-modal-library>
+  <div class="modal is-wide">
+    <div class="modal-head">
+      <div><h2>Agregar sección</h2><p>Elegí un bloque y se suma al final de la página.</p></div>
+      <button class="modal-close" type="button" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="modal-body" data-library-body></div>
+  </div>
+</div>
+
+<div class="overlay" data-modal-publish>
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2>Publicar el sitio</h2><p>Los cambios pasan a la versión que ve el público.</p></div>
+      <button class="modal-close" type="button" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p data-publish-copy>Vamos a publicar el borrador tal como está ahora.</p>
+      <div data-publish-local class="u-hide">
+        <h4>Modo local</h4>
+        <p>Estás editando sin servidor. Al publicar se descarga un archivo <b>content.js</b> listo para reemplazar el del proyecto.</p>
+      </div>
+      <div data-publish-server class="u-hide">
+        <h4>Qué va a pasar</h4>
+        <ul>
+          <li>Se guarda el contenido en el repositorio (commit).</li>
+          <li>Vercel reconstruye el sitio automáticamente.</li>
+          <li>En uno o dos minutos ya está online.</li>
+        </ul>
+      </div>
+      <p class="f-hint" style="margin-top:14px">Podés volver atrás: cada publicación queda en el historial de Git.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-u" type="button" data-close>Cancelar</button>
+      <button class="btn-u is-accent" type="button" data-publish-go>Publicar ahora</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-modal-help>
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2>Cómo se usa</h2><p>Cuatro cosas y ya sabés editar todo.</p></div>
+      <button class="modal-close" type="button" data-close><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <h4>1 · Elegí una sección</h4>
+      <p>Hacé clic en cualquier bloque de la página o en la lista de la izquierda. El panel derecho muestra sus campos.</p>
+      <h4>2 · Editá el texto donde está</h4>
+      <p>Doble clic sobre un título o párrafo y escribí. Enter confirma, Escape cancela. Los cambios se ven al instante.</p>
+      <h4>3 · Guardá el borrador</h4>
+      <p>El borrador se guarda solo en tu navegador. Con <b>Guardar</b> (o Ctrl+S) queda también en el repositorio, sin publicarse.</p>
+      <h4>4 · Publicá</h4>
+      <p>El botón <b>Publicar</b> sube el borrador a la versión pública. Vercel tarda un minuto en actualizar el sitio.</p>
+      <p class="f-hint" style="margin-top:14px">Atajos: Ctrl+Z deshacer · Ctrl+Shift+Z rehacer · Ctrl+S guardar.</p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-u is-dark" type="button" data-close>Entendido</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" data-modal-confirm>
+  <div class="modal" style="width:min(430px,100%)">
+    <div class="modal-head">
+      <div><h2 data-confirm-title>Confirmar</h2></div>
+    </div>
+    <div class="modal-body"><p data-confirm-text></p></div>
+    <div class="modal-foot">
+      <button class="btn-u" type="button" data-confirm-no>Cancelar</button>
+      <button class="btn-u is-accent" type="button" data-confirm-yes>Sí, seguir</button>
+    </div>
+  </div>
+</div>
+
+<div class="pop" data-pop>
+  <div class="pop-meta" data-pop-meta>Cuenta</div>
+  <div class="pop-sep"></div>
+  <button type="button" data-pop-view>
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+    Ver el sitio
+  </button>
+  <button type="button" data-pop-download>
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M4 20h16"/></svg>
+    Descargar copia (JSON)
+  </button>
+  <button type="button" data-pop-import>
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M12 16V5"/><path d="m7 10 5-5 5 5"/><path d="M4 20h16"/></svg>
+    Importar copia
+  </button>
+  <button type="button" data-pop-help>
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.2 2.4c-.5.2-.7.7-.7 1.2v.4"/><path d="M12 17h.01"/></svg>
+    Cómo se usa
+  </button>
+  <div class="pop-sep"></div>
+  <button type="button" data-pop-logout>
+    <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="15" height="15"><path d="M14 4h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4"/><path d="M10 8 6 12l4 4"/><path d="M6 12h9"/></svg>
+    Cerrar sesión
+  </button>
+</div>
+
+<input type="file" accept="image/*" data-file hidden>
+<input type="file" accept=".json,.js,text/plain" data-import hidden>
+
+<div class="toasts" data-toasts></div>
+
+<script src="art.js"></script>
+<script src="render.js"></script>
+<script src="content.js"></script>
+<script src="editor-schema.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>
